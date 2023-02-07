@@ -1,7 +1,28 @@
 {
-  "name": "ez-table",
+  "name": "ez-rc-table",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
+  "description": "React Table component",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/esm/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/khanhspring/ez-table.git"
+  },
+  "files": [
+    "dist",
+    "LICENSE",
+    "README.md"
+  ],
+  "keywords": [
+    "react",
+    "typescript",
+    "table",
+    "react table"
+  ],
+  "author": "khanhspring",
+  "license": "MIT",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
@@ -14,13 +35,19 @@
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
     "typescript": "^4.9.5",
+    "user": "^0.0.0",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "clean": "rimraf dist/",
+    "copy-files": "copyfiles -u 1 src/components/*.css dist/esm/ && copyfiles -u 1 src/components/*.css dist/cjs/",
+    "build:esm": "tsc",
+    "build:cjs": "tsc --module commonjs --outDir dist/cjs",
+    "build:lib": "npm run build:esm && npm run build:cjs && npm run copy-files"
   },
   "eslintConfig": {
     "extends": [
@@ -39,5 +66,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "copyfiles": "^2.4.1",
+    "rimraf": "^4.1.2"
   }
 }
