@@ -2,8 +2,10 @@
 export type Column<T> = {
     title?: string;
     dataKey?: string;
-    width?: number;
-    render?: (value?: any, record?: T) => any;
+    width?: number | string;
+    render?: (value: any, record: T, index: number) => React.ReactNode;
+    cellClassName?: string;
+    headerCellClassName?: string;
 }
 
 export type StickyHeaderOptions = {
